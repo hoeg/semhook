@@ -6,4 +6,6 @@ import (
 
 func main() {
 	app.Start()
+	c := app.Configuration
+
 }
