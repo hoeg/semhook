@@ -161,9 +161,5 @@ func getRepositories(repoRoot string) ([]string, error) {
 		return nil
 	})
 
-	if err != nil {
-		return nil, err
-	}
-
-	return repos, nil
+	return repos, err
 }
