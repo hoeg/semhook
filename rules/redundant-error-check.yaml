@@ -1,0 +1,12 @@
+rules:
+  - id: redundant-error-check
+    patterns: 
+      - pattern: |
+          if err != nil {
+            return $IDENT, err
+          }
+          return $VAL, nil
+    message: Semgrep found a match
+    fix: return $VAL, err
+    languages: [golang]
+    severity: WARNING

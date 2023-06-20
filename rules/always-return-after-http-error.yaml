@@ -1,0 +1,21 @@
+rules:
+  - id: always-return-after-http-error
+    patterns:
+      - pattern-inside: |
+          func($C *gin.Context) {
+            ...
+          }
+      - pattern-inside: |
+          if ... {
+            ...
+          }
+      - pattern-not-inside: |
+          if ... {
+            ...
+            return
+          }
+      - pattern: $C.$FUNC(...)
+    message: Semgrep found a match
+    languages:
+      - golang
+    severity: WARNING

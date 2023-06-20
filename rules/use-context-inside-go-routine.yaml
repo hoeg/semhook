@@ -1,0 +1,21 @@
+rules:
+  - id: use-context-inside-go-routine
+    languages:
+      - golang
+    message: Remember to copy context
+    mode: taint
+    pattern-sources:
+      - patterns:
+        - pattern-inside: |
+            func($C *gin.Context) {
+              ...
+            }
+        - pattern: $C
+    pattern-sinks:
+      - patterns:
+        - pattern-inside: |
+            go func() {
+              ...
+            }()
+        - pattern: $C
+    severity: WARNING
