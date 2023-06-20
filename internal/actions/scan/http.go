@@ -52,6 +52,7 @@ func (s *ScanHandler) HandlerStatus() func(c *gin.Context) {
 		scanID := c.Query("scanid")
 		if scanID == "" {
 			c.JSON(http.StatusBadRequest, gin.H{"error": "missing scanid parameter"})
+			return
 		}
 		status, err := s.service.queryProgress(scanID)
 		if err != nil {
@@ -68,6 +69,7 @@ func (s *ScanHandler) HandlerGetResult() func(c *gin.Context) {
 		scanID := c.Query("scanid")
 		if scanID == "" {
 			c.JSON(http.StatusBadRequest, gin.H{"error": "missing scanid parameter"})
+			return
 		}
 		result, err := s.service.getResult(scanID)
 		if err != nil {
